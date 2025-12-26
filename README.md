@@ -41,7 +41,56 @@
 ### Step 14: 
   Stop
 # Program:
+
+```
+#include <stdio.h>
+
+// Function to check if a year is a leap year
+int isLeapYear(int year) {
+    if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
+        return 1;
+    else
+        return 0;
+}
+
+// Function to check if the date is valid
+int isValidDate(int day, int month, int year) {
+    // Check valid month
+    if (month < 1 || month > 12)
+        return 0;
+
+    // Days in each month
+    int daysInMonth[] = {0, 31, 28, 31, 30, 31, 30, 
+                         31, 31, 30, 31, 30, 31};
+
+    // Adjust February for leap year
+    if (month == 2 && isLeapYear(year))
+        daysInMonth[2] = 29;
+
+    // Check valid day
+    if (day < 1 || day > daysInMonth[month])
+        return 0;
+
+    return 1;
+}
+
+int main() {
+    int day, month, year;
+
+    printf("Enter date (DD/MM/YYYY): ");
+    scanf("%d/%d/%d", &day, &month, &year);
+
+    if (isValidDate(day, month, year))
+        printf("The date %02d/%02d/%d is valid.\n", day, month, year);
+    else
+        printf("The date %02d/%02d/%d is invalid.\n", day, month, year);
+
+    return 0;
+}
+```
 # Output:
+<img width="365" height="71" alt="image" src="https://github.com/user-attachments/assets/99f6da01-1fa8-4840-ab05-855fff2a0eea" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -89,7 +138,36 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 13: 
   Stop
 # Program:
+
+```
+#include <stdio.h>
+
+// Function to find maximum of two numbers
+int max(int a, int b) {
+    return (a > b) ? a : b;
+}
+
+// Function to find minimum of two numbers
+int min(int a, int b) {
+    return (a < b) ? a : b;
+}
+
+int main() {
+    int num1, num2;
+
+    printf("Enter two numbers: ");
+    scanf("%d %d", &num1, &num2);
+
+    printf("Maximum: %d\n", max(num1, num2));
+    printf("Minimum: %d\n", min(num1, num2));
+
+    return 0;
+}
+
+```
 # Output:
+<img width="303" height="112" alt="image" src="https://github.com/user-attachments/assets/197a29ea-f5d9-4384-ba95-a30945ef8c9b" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -137,7 +215,46 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 11: 
  Stop
 # Program:
+```
+#include <stdio.h>
+
+// Function to convert Celsius to Fahrenheit
+float celsiusToFahrenheit(float celsius) {
+    return (celsius * 9 / 5) + 32;
+}
+
+// Function to convert Fahrenheit to Celsius
+float fahrenheitToCelsius(float fahrenheit) {
+    return (fahrenheit - 32) * 5 / 9;
+}
+
+int main() {
+    float celsius, fahrenheit;
+
+    // Input Celsius temperature
+    printf("Enter temperature in Celsius: ");
+    scanf("%f", &celsius);
+
+    // Convert to Fahrenheit
+    fahrenheit = celsiusToFahrenheit(celsius);
+    printf("%.2f Celsius = %.2f Fahrenheit\n", celsius, fahrenheit);
+
+    // Input Fahrenheit temperature
+    printf("Enter temperature in Fahrenheit: ");
+    scanf("%f", &fahrenheit);
+
+    // Convert to Celsius
+    celsius = fahrenheitToCelsius(fahrenheit);
+    printf("%.2f Fahrenheit = %.2f Celsius\n", fahrenheit, celsius);
+
+    return 0;
+}
+
+```
 # Output:
+
+<img width="445" height="153" alt="image" src="https://github.com/user-attachments/assets/3e0637b3-4c5e-48b3-a3ed-02b34061d0a1" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -185,7 +302,64 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 7: 
   Stop
 # Program:
+```
+#include <stdio.h>
+
+// Function to print a 4x4 matrix in spiral order
+void spiralPrint(int matrix[4][4], int rows, int cols) {
+    int top = 0, bottom = rows - 1;
+    int left = 0, right = cols - 1;
+
+    printf("Spiral order of the matrix:\n");
+
+    while (top <= bottom && left <= right) {
+        // Print top row
+        for (int i = left; i <= right; i++)
+            printf("%d ", matrix[top][i]);
+        top++;
+
+        // Print right column
+        for (int i = top; i <= bottom; i++)
+            printf("%d ", matrix[i][right]);
+        right--;
+
+        // Print bottom row
+        if (top <= bottom) {
+            for (int i = right; i >= left; i--)
+                printf("%d ", matrix[bottom][i]);
+            bottom--;
+        }
+
+        // Print left column
+        if (left <= right) {
+            for (int i = bottom; i >= top; i--)
+                printf("%d ", matrix[i][left]);
+            left++;
+        }
+    }
+
+    printf("\n");
+}
+
+int main() {
+    int matrix[4][4];
+
+    // Input 4x4 matrix elements
+    printf("Enter 16 elements of 4x4 matrix:\n");
+    for (int i = 0; i < 4; i++)
+        for (int j = 0; j < 4; j++)
+            scanf("%d", &matrix[i][j]);
+
+    // Call the spiralPrint function
+    spiralPrint(matrix, 4, 4);
+
+    return 0;
+}
+
+```
 # Output:
+<img width="533" height="193" alt="image" src="https://github.com/user-attachments/assets/c9419666-7144-4b14-978c-02f8e47e6992" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -220,7 +394,55 @@ To build a C program to convert a string as described above, using a user-define
 ### Step 6: 
  Stop
 # Program:
+
+```
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+
+// Function to convert required characters to uppercase
+void convertString(char str[]) {
+    int len = strlen(str);
+
+    // Convert first character to uppercase
+    if (len > 0)
+        str[0] = toupper(str[0]);
+
+    // Convert last character to uppercase
+    if (len > 1)
+        str[len - 1] = toupper(str[len - 1]);
+
+    // Convert characters before and after spaces
+    for (int i = 1; i < len - 1; i++) {
+        if (str[i] == ' ') {
+            if (i - 1 >= 0)
+                str[i - 1] = toupper(str[i - 1]);  // character before space
+            if (i + 1 < len)
+                str[i + 1] = toupper(str[i + 1]);  // character after space
+        }
+    }
+}
+
+int main() {
+    char str[200];
+
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+
+    // Remove newline character if present
+    str[strcspn(str, "\n")] = 0;
+
+    // Call the user-defined function
+    convertString(str);
+
+    printf("Converted string: %s\n", str);
+
+    return 0;
+}
+````
 # Output:
+<img width="308" height="87" alt="image" src="https://github.com/user-attachments/assets/fb5f22cd-de82-4b3b-b770-66e030d46419" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
